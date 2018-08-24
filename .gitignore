@@ -1,0 +1,6 @@
+# Ignore large files in this directory
+.idea
+.ipynb_checkpoints
+__pycache__
+logfile.txt
+*.pyc
