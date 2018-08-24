@@ -1,6 +1,8 @@
-A minimal example for integrating a Keras-TF model with SACRED experimnetal framework,
-and HyperOpt param search under a distributed system and
-with full installation and usage instructions.
+A minimal example for integrating a Keras-TF model with SACRED experimental framework,
+and HyperOpt scheduler for param search. HyperOpt is used under a distributed system (a cluster of machines).
+
+Below you can also find full installation and usage instructions.
+
 
 # Project files
 `mnist_keras.py` is a script to train mnist with Keras.
