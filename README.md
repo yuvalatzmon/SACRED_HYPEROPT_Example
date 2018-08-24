@@ -123,4 +123,8 @@ For every other client machines (a "worker" machine), login and execute the work
 # References
 1. https://www.hhllcks.de/blog/2018/5/4/version-your-machine-learning-models-with-sacred
 
-2. https://github.com/IDSIA/sacred/issues/82#issuecomment-364067522 
+2. https://github.com/IDSIA/sacred/issues/82#issuecomment-364067522
+
+3. https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/
+
+4. https://stackoverflow.com/a/43165464/2476373 
