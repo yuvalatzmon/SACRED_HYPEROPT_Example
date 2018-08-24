@@ -13,8 +13,8 @@ Below you can also find full installation and usage instructions.
 
 # Setup the anaconda environment
 
-    yes | conda create -n tf_1_9b python=3.6
-    conda activate tf_1_9b
+    yes | conda create -n my_env python=3.6
+    conda activate my_env
     yes | conda install -c anaconda tensorflow-gpu=1.9.0
     yes | pip install pymongo
     yes | pip install sacred hyperopt
