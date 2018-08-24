@@ -1,5 +1,5 @@
-A minimal example for integrating a Keras-TF model with SACRED experimental framework,
-and HyperOpt scheduler for param search. HyperOpt is used under a distributed system (a cluster of machines).
+A minimal example for integrating a Keras-TF model with [SACRED](https://github.com/IDSIA/sacred) experimental framework,
+and [HyperOpt](https://github.com/hyperopt/hyperopt) (Distributed Asynchronous Hyperparameter Optimization).
 
 Below you can also find full installation and usage instructions.
 
