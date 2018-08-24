@@ -42,7 +42,9 @@ def main(_run):
     command_line_args = mnist_keras.args # argparse command line arguments
     vars(command_line_args).update(cfg)
     # call main script
-    return mnist_keras.main(f_log_metrics=log_metrics)
+    val_acc, test_acc = mnist_keras.main(f_log_metrics=log_metrics)
+    _run.info = dict(val_acc=val_acc, test_acc=test_acc)
+    return val_acc
 
 @ex.capture
 def log_metrics(_run, logs):

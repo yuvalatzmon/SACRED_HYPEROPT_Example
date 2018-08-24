@@ -13,7 +13,7 @@ if __name__ == '__main__':
     # algo = hyperopt.tpe.suggest # TPE search
     algo = hyperopt.rand.suggest #random search
     name = 'mnist_keras'
-    version = 2
+    version = 100
 
     # Define the search space
     space = {
@@ -35,9 +35,9 @@ if __name__ == '__main__':
     argmin = fmin(fn=hyperopt_objective,
                 space=space,
                 algo=algo,
-                max_evals=20,
+                max_evals=12,
                 trials=trials,
                 verbose=1)
     best_acc = 1-trials.best_trial['result']['loss']
 
-    print('best acc=', best_acc, 'params:', argmin)
+    print('best val acc=', best_acc, 'params:', argmin

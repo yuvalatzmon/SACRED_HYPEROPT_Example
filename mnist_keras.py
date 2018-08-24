@@ -44,7 +44,9 @@ def main(f_log_metrics = lambda logs:None):
     print(vars(args))
     config_tf_session()
 
-    input_shape, output_shape, x_train, y_train, x_test, y_test = prepare_data()
+    input_shape, output_shape, \
+    x_train, y_train, x_val, y_val, x_test, y_test = prepare_data()
+
     model = get_model(input_shape, output_shape)
 
     model.compile(loss=keras.losses.categorical_crossentropy,
@@ -57,13 +59,17 @@ def main(f_log_metrics = lambda logs:None):
               batch_size=args.batch_size,
               epochs=args.epochs,
               verbose=args.verbose,
-              validation_data=(x_test, y_test),
+              validation_data=(x_val, y_val),
               callbacks=[log_callback])
-    score = model.evaluate(x_test, y_test, verbose=0)
-    print('Test loss:', score[0])
-    print('Test accuracy:', score[1])
+    val_score = model.evaluate(x_val, y_val, verbose=0)
+    print('Val loss:', val_score[0])
+    print('Val accuracy:', val_score[1])
 
-    return score[1]
+    test_score = model.evaluate(x_test, y_test, verbose=0)
+    print('Test loss:', test_score[0])
+    print('Test accuracy:', test_score[1])
+
+    return val_score[1], test_score[1]
 
 def config_tf_session():
     gpu_options = tf.GPUOptions(
@@ -97,32 +103,40 @@ def prepare_data():
     img_rows, img_cols = 28, 28
 
     # the data, split between train and test sets
-    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    (x_train_all, y_train_all), (x_test, y_test) = mnist.load_data()
 
-    # Training & testing on small subsets for the sake of this example
-    x_train = x_train[0:1000, :]
-    y_train = y_train[0:1000]
+    # Train, validation & test on small subsets for the sake of this example
+    x_train = x_train_all[0:1000, :]
+    y_train = y_train_all[0:1000]
+    x_val = x_train_all[1000:2000, :]
+    y_val = y_train_all[1000:2000]
     x_test = x_test[0:1000, :]
     y_test = y_test[0:1000]
 
     if K.image_data_format() == 'channels_first':
         x_train = x_train.reshape(x_train.shape[0], 1, img_rows, img_cols)
+        x_val = x_test.reshape(x_val.shape[0], 1, img_rows, img_cols)
         x_test = x_test.reshape(x_test.shape[0], 1, img_rows, img_cols)
         input_shape = (1, img_rows, img_cols)
     else:
         x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
+        x_val = x_val.reshape(x_val.shape[0], img_rows, img_cols, 1)
         x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
         input_shape = (img_rows, img_cols, 1)
 
     x_train = x_train.astype('float32')
+    x_val = x_val.astype('float32')
     x_test = x_test.astype('float32')
     x_train /= 255
+    x_val /= 255
     x_test /= 255
     print('x_train shape:', x_train.shape)
     print(x_train.shape[0], 'train samples')
+    print(x_val.shape[0], 'val samples')
     print(x_test.shape[0], 'test samples')
 
     # convert class vectors to binary class matrices
     y_train = keras.utils.to_categorical(y_train, num_classes)
+    y_val = keras.utils.to_categorical(y_val, num_classes)
     y_test = keras.utils.to_categorical(y_test, num_classes)
-    return input_shape, num_classes, x_train, y_train, x_test, y_test
+    return input_shape, num_classes, x_train, y_train, x_val, y_val, x_test, y_test
