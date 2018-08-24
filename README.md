@@ -120,3 +120,7 @@ For every other client machines (a "worker" machine), login and execute the work
 	PYTHONPATH="./" CUDA_VISIBLE_DEVICES=$GPU_ID hyperopt-mongo-worker --mongo=localhost:27017/hyperopt --poll-interval=1 --workdir=/tmp/hyperopt
 
 
+# References
+1. https://www.hhllcks.de/blog/2018/5/4/version-your-machine-learning-models-with-sacred
+
+2. https://github.com/IDSIA/sacred/issues/82#issuecomment-364067522 
