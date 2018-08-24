@@ -30,7 +30,7 @@ Below you can also find full installation and usage instructions.
     yes | conda install pandas matplotlib ipython jupyter nb_conda
 
 # Installation instructions for MongoDB (v4.0.1) on RHEL/CENTOS, without root privileges
-Based on [these](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/) instructions.
+Both SACRED and HyperOpt require a MongoDB host. Installation instruction are based on [this](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/) page.
 
 Execute the command below and also add it to your `~/.bashrc` file
 
@@ -95,7 +95,7 @@ Monitor results with [sacred board](https://github.com/chovanecm/sacredboard) (o
 
 	sacredboard -m sacred_mnist
 
-### 3. Execute hyper-params search on a distributed system (with many machines)
+### 3. Execute hyper-params search on a distributed system (a cluster of machines)
 
 For every client machine, do the following:
 
