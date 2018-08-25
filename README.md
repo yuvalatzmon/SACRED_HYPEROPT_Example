@@ -54,12 +54,12 @@ Execute the commands below and also add them to your `~/.bashrc` file
     # Port forwarding function
     # Usage example: pfwd hostname {6000..6009}
     function pfwd {
-                        for i in ${@:2}
-                        do
-                                            echo Forwarding port $i
-                                            ts | grep running | grep $1 | grep $i >/dev/null || ts ssh -N -L $i:localhost:$i $1
-                        done  
-    }
+    for i in ${@:2}
+    do
+      echo Forwarding port $i
+      ssh -N -L $i:localhost:$i $1 &
+    done  
+    }    
 
 ### Install RoboMongo GUI for MongoDB (optional)
 
