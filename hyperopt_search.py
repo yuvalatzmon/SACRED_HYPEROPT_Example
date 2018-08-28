@@ -63,6 +63,6 @@ if __name__ == '__main__':
                     verbose=1)
         best_acc = 1-trials.best_trial['result']['loss']
 
-        print('best val acc=', best_acc, 'params:', to_exp_space(argmin),
-              '\nlog10(params):', argmin)
+        print('best val acc = ', best_acc, '\nparams = ', to_exp_space(argmin),
+              '\nlog10(params) = ', argmin)
 

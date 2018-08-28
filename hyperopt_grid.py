@@ -6,7 +6,15 @@ from hyperopt import pyll, hp
 from hyperopt.base import miscs_update_idxs_vals
 from hyperopt.pyll import scope
 
-def logspace_round(v):
+def pow10_and_round(v):
+    """
+    This calculates the power of 10, and rounds by its decimal precision
+    e.g.
+    -0.5 --> 10**-0.5 --> 0.316  --> 0.3
+    -1.5 --> 10**-1.5 --> 0.0316 --> 0.03
+    0.25 --> 10**0.25 --> 1.77   --> 2
+    1.25 --> 10**1.25 --> 17.78  --> 20
+    """
     return np.round(10**v, -np.int32(np.floor(v)))
 
 def dict_to_sorted_str(d):
@@ -14,15 +22,15 @@ def dict_to_sorted_str(d):
 
 def to_exp_space(log_values):
     if type(log_values) == dict:
-        return dict([(k, logspace_round(v)) for k,v in log_values.items()])
+        return dict([(k, pow10_and_round(v)) for k, v in log_values.items()])
     elif type(log_values) in [tuple, list]:
-        return tuple(logspace_round(v) for v in log_values)
+        return tuple(pow10_and_round(v) for v in log_values)
     else:
         raise RuntimeError()
 
 @scope.define
 def f_grid(*args):
-    return [(v[0], logspace_round(v[1])) for v in args]
+    return [(v[0], pow10_and_round(v[1])) for v in args]
 
 class hyperopt_grid():
     def __init__(self, grid_log_ranges):
