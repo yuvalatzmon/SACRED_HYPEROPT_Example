@@ -63,10 +63,16 @@ if __name__ == '__main__':
 
 ##### HyperOpt support #####################
 from hyperopt import STATUS_OK
+# noinspection PyUnresolvedReferences
+import hyperopt_grid
 def hyperopt_objective(params):
     config = {}
-    for (key, value) in params.items():
-        if key in ['batch_size']:
+
+    if type(params) == dict:
+        params = params.items()
+
+    for (key, value) in params:
+        if key in ['fc_dim']:
             value = int(value)
         config[key] = value
     run = ex.run(config_updates=config, )

@@ -26,7 +26,7 @@ Below you can also find full installation and usage instructions.
 	yes | pip install https://github.com/chovanecm/sacredboard/archive/develop.zip
 
     # Other common libraries I use, not required by this example
-    yes | pip install GitPython markdown-editor
+    yes | pip install GitPython markdown-editor h5py
     yes | conda install pandas matplotlib ipython jupyter nb_conda
 
 # Installation instructions for MongoDB (v4.0.1) on RHEL/CENTOS, without root privileges
