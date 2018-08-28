@@ -49,7 +49,7 @@ if __name__ == '__main__':
         # A finer search space
         log_ranges = dict(lr=(-3.5, -3.5, 0.5), # 1e-5, 3e-5, 1e-4, 3e-4, ...
                           fc_dim=(2.5, 4, 0.25), # 30, 60, 100, 200, 300, 600, 1000
-                          dropout_rate=(-0.4, 0, 0.1)) # .1, .2, .3, .4, .5, .6, .8, 1.
+                          dropout_rate=(-0.4, 0, 0.1)) # .4, .5, .6, .8, 1.
 
 
         grid = hyperopt_grid(log_ranges)
