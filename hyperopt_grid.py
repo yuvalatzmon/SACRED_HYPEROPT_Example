@@ -107,24 +107,30 @@ class hyperopt_grid():
                 # if these params are seen for the first time, then generate a new
                 # trial for them
                 if this_run_params_str not in self.executed_params:
+
+                    # add the new trial to returned list
                     rval.extend(new_trial)
+
+                    # log the new trial as executed, in order to avoid duplication
                     self._cnt += 1
                     self.executed_params = \
                         self.executed_params.union([this_run_params_str])
                     print(self._cnt, this_run_params)
                     break
                 else:
-                    # otherwise (params were seen), skip them
-
+                    # otherwise (params were seen), skip this trial
+                    # update internal counter
                     self._cnt_skip += 1
 
-
+                # Stopping condition (breaking the hyperopt loop)
                 if len(self.executed_params) >= self.num_combinations:
                     # returning an empty list, breaks the hyperopt loop
                     return []
 
 
-                if self._cnt_skip + self._cnt >= 100*self.num_combinations:
+                # "Emergency" stopping condition, breaking the hyperopt loop when
+                # loop runs for too long without submitted experiments
+                if self._cnt_skip >= 100*self.num_combinations:
                     warnings.warn('Warning: Exited due to too many skips.'
                           ' This can happen if most of the param combinationa have '
                                   'been encountered, and drawing a new '
