@@ -11,6 +11,11 @@ Below you can also find full installation and usage instructions.
 
 `hyperopt_search.py` is a distributed scheduler for hyper-params optimization.
 
+`hyperopt_grid.py` is a grid-search extension for HyperOpt
+
+`mongo_queries.py` is a usage example for listing results saved by MongoDB, but using PANDAS DataFrame API 
+
+
 # Setup the anaconda environment
 
     yes | conda create -n my_env python=3.6
