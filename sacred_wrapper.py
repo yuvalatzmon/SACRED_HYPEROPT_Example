@@ -30,7 +30,7 @@ def config():
     lr = 1e-3
     dropout_rate = 0.5
     fc_dim = 128
-    epochs = 10
+    epochs = 30
     batch_size = 32
 
 @ex.main
@@ -43,7 +43,7 @@ def main(_run):
     vars(command_line_args).update(cfg)
     # call main script
     val_acc, test_acc = mnist_keras.main(f_log_metrics=log_metrics)
-    _run.info = dict(val_acc=val_acc, test_acc=test_acc)
+    _run.info.update(val_acc=val_acc, test_acc=test_acc)
     ex.add_artifact('mnist_model.h5')
     return val_acc
 
