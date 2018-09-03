@@ -69,6 +69,9 @@ def main(f_log_metrics = lambda logs:None):
     print('Test loss:', test_score[0])
     print('Test accuracy:', test_score[1])
 
+    print('Saving model: mnist_model.h5')
+    model.save('mnist_model.h5')
+
     return val_score[1], test_score[1]
 
 def config_tf_session():

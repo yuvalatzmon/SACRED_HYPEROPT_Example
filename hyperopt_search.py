@@ -14,7 +14,7 @@ if __name__ == '__main__':
     # algo = 'rand'
     algo = 'grid'
     name = 'mnist_keras'
-    version = 110
+    version = 112
     trials = MongoTrials('mongo://localhost:27017/hyperopt/jobs',
                          exp_key='%s_v%d' % (name, version))
 
@@ -44,12 +44,12 @@ if __name__ == '__main__':
 
         # Define the search spac. Ranges are defined in log10 space
         log_ranges = dict(lr=(-5, -1, 0.5), # 1e-5, 3e-5, 1e-4, 3e-4, ...
-                          fc_dim=(1.5, 3, 0.25), # 30, 60, 100, 200, 300, 600, 1000
+                          fc_dim=(1., 2.5, 0.25), # 10, 20, 30, 60, 100, 200, 300
                           dropout_rate=(-1, -0.1, 0.1)) # .1, .2, .3, .4, .5, .6, .8,
         # A finer search space
-        log_ranges = dict(lr=(-3.5, -3.5, 0.5), # 1e-5, 3e-5, 1e-4, 3e-4, ...
-                          fc_dim=(2., 4, 0.25), # 30, 60, 100, 200, 300, 600, 1000
-                          dropout_rate=(-0.4, -0.1, 0.1)) # .4, .5, .6, .8,
+        # log_ranges = dict(lr=(-3.5, -3.5, 0.5), # 1e-5, 3e-5, 1e-4, 3e-4, ...
+        #                   fc_dim=(1.5, 2.5, 0.25), # 30, 60, 100, 200, 300,
+        #                   dropout_rate=(-0.4, -0.1, 0.1)) # .4, .5, .6, .8,
 
 
         grid = hyperopt_grid(log_ranges)
@@ -58,7 +58,7 @@ if __name__ == '__main__':
                      space=grid.space,
                     algo=grid.suggest,
                     # max_evals=grid.num_combinations,
-                    max_evals=10,
+                    max_evals=30,
                     trials=trials,
                     verbose=1)
         best_acc = 1-trials.best_trial['result']['loss']

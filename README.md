@@ -13,7 +13,9 @@ Below you can also find full installation and usage instructions.
 
 `hyperopt_grid.py` is a grid-search extension for HyperOpt
 
-`mongo_queries.py` is a usage example for listing results saved by MongoDB, but using PANDAS DataFrame API 
+`mongo_queries.ipynb` is a usage example for listing results saved by MongoDB, but 
+using PANDAS DataFrame API. It also demonstrates manipulating (saving, loading, 
+deleting) experiment artifacts (model files) using the MongoDB filesystem (GridFS).
 
 
 # Setup the anaconda environment
@@ -122,7 +124,7 @@ Login to client #1, run the commands above, and execute the hyper-params schedul
 For every other client machines (a "worker" machine), login and execute the worker script:
 
 	export GPU_ID=<gpu_id> # select gpu id for multi gpu machine
-	PYTHONPATH="./" CUDA_VISIBLE_DEVICES=$GPU_ID hyperopt-mongo-worker --mongo=localhost:27017/hyperopt --poll-interval=1 --workdir=/tmp/hyperopt
+	PYTHONPATH="./" CUDA_VISIBLE_DEVICES=$GPU_ID hyperopt-mongo-worker --mongo=localhost:27017/hyperopt --poll-interval=1 --workdir=-workdir=`mktemp -u -p /tmp/hyperopt/`
 
 
 # References

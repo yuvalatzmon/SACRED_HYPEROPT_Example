@@ -13,7 +13,7 @@ args = mnist_keras.args
 
 ex = Experiment('My_Experiment')
 my_url = '127.0.0.1:27017'  # Or <server-static-ip>:<port> if running on server
-curr_db_name = 'sacred_mnist'
+curr_db_name = 'sacred_mnist_example'
 ex.captured_out_filter = apply_backspaces_and_linefeeds
 
 if args.disable_logging == False:
@@ -44,6 +44,7 @@ def main(_run):
     # call main script
     val_acc, test_acc = mnist_keras.main(f_log_metrics=log_metrics)
     _run.info = dict(val_acc=val_acc, test_acc=test_acc)
+    ex.add_artifact('mnist_model.h5')
     return val_acc
 
 @ex.capture
