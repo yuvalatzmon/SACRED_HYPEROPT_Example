@@ -1,4 +1,4 @@
-A minimal example for integrating a a general machine learning training script with 
+A minimal example for integrating a general machine learning training script with 
 [SACRED](https://github.com/IDSIA/sacred) experimental framework,
 and [HyperOpt](https://github.com/hyperopt/hyperopt) (Distributed Asynchronous Hyperparameter Optimization).
 
