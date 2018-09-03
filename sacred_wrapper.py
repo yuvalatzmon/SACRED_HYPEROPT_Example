@@ -30,7 +30,7 @@ def config():
     lr = 1e-3
     dropout_rate = 0.5
     fc_dim = 128
-    epochs = 30
+    epochs = 20
     batch_size = 32
 
 @ex.main

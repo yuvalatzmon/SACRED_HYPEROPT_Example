@@ -1,4 +1,5 @@
-A minimal example for integrating a Keras-TF model with [SACRED](https://github.com/IDSIA/sacred) experimental framework,
+A minimal example for integrating a a general machine learning training script with 
+[SACRED](https://github.com/IDSIA/sacred) experimental framework,
 and [HyperOpt](https://github.com/hyperopt/hyperopt) (Distributed Asynchronous Hyperparameter Optimization).
 
 Below you can also find full installation and usage instructions.
