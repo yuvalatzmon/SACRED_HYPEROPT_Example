@@ -1,3 +1,6 @@
+**NOTE** https://github.com/yuvalatzmon/SACRED_HyperOpt_v2 is an extension to this repo, with more features and more abstraction. 
+
+
 A minimal example for integrating a general machine learning training script with 
 [SACRED](https://github.com/IDSIA/sacred) experimental framework,
 and [HyperOpt](https://github.com/hyperopt/hyperopt) (Distributed Asynchronous Hyperparameter Optimization).
